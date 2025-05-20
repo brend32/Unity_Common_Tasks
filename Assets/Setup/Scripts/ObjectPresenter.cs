@@ -13,6 +13,17 @@ public class ObjectPresenter : MonoBehaviour
 
     public List<TestObject> Presented = new();
 
+    public void Present(ObjectType objectType)
+    {
+        EnsureSize(1);
+        
+        var obj = Presented[0];
+        obj.Type = objectType;
+        var prefab = GetPrefab(objectType);
+        
+        obj.Sync(prefab);
+    }
+    
     public void Present(IEnumerable<ObjectType> objects)
     {
         var list = objects.ToList();
